@@ -1,0 +1,276 @@
+//google font
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300i,400,700,900')
+
+//general imports
+@import "variables"
+
+
+*
+	box-sizing: border-box
+
+//general font styling
+
+html, body
+	font-family: 'Montserrat', sans-serif
+
+
+body
+	padding-bottom: 100px
+
+
+//general styling
+
+
+	
+.face-unit
+	cursor: pointer
+	img
+		width: 100%
+
+.title
+	font-size: 35px
+	text-transform: uppercase
+	margin-bottom: 30px
+	a
+		font-size: 14px
+		font:
+			weight: 900
+
+.sub-title
+	font: 
+		size: 20px
+		weight: 400
+	margin-bottom: 20px
+	text-transform: uppercase
+
+
+.info
+	font-size: 16px
+	text-transform: uppercase
+
+
+.user-unit
+	text-align: center
+	background: #e9e9e9
+	border: 1px solid rgba(black, 0.1)
+	border-radius: 10px
+	padding: 20px 
+	cursor: pointer
+	transition: all ease-in-out 300ms
+	margin-left: 20px
+	img
+		width: 100%
+		display: block
+		margin-bottom: 15px
+
+	.face
+		width: 150px
+		height: 150px
+		background:
+			size: cover
+			position: center
+			repeat: no-repeat
+		margin: 0 auto 20px
+		border-radius: 50%
+
+	.name
+		font-size: 20px
+		text-align: center
+
+.button-wrapper
+	text-align: center
+
+.message-content
+	background: $grey
+	padding: 20px
+	border-radius: 10px
+	margin-bottom: 20px
+
+
+.message-title
+	font:
+		size: 20px
+		weight: 400
+
+.text-lead
+	font-size: 20px
+	margin-bottom: 20px
+
+.user-face
+	width: 200px
+	height: 200px
+	margin: 0 auto 15px
+	margin-bottom: 15px
+	background:
+		size: cover
+		repeat: no-repeat
+		position: center
+
+.link
+	display: inline-block
+	margin-right: 15px
+	background: white
+	padding: 10px
+	border: 1px solid rgba(black, 0.2)
+	border-radius: 5px
+	color: black
+	font-size: 12px
+	text-decoration: none
+	&:hover
+		text-decoration: none
+.view-unit
+	.face
+		width: 100%
+		min-height: 300px
+		background:
+			size: cover
+			position: center
+		margin: 0 auto
+
+
+
+header .container
+	display: flex
+	align-items: center
+	justify-content: space-between
+	margin-bottom: 20px
+	padding: 15px 0px 0px
+	.logo
+		font:
+			size: 25px
+
+	nav
+		display: flex
+		align-items: center
+	nav a
+		margin-left: 20px
+		font-size: 15px
+		position: relative
+
+	nav a span
+		display: inline-block
+		background: red
+		font: 
+			size: 8px
+			weight: 700
+		position: absolute
+		top: -10px
+		right: -10px
+		width
+		color: white
+		display: flex
+		justify-content: center
+		align-items: center
+		border-radius: 50%
+	nav a span .check
+		width: 20px
+		height: 20px
+
+
+	nav .face
+		width: 40px
+		height: 40px
+		display: inline-block
+		border-radius: 50%
+		background:
+			size: cover
+			position: center
+
+
+//message unit
+
+.message-content .face
+	width: 50px
+	height: 50px
+	border-radius: 50px
+	margin-bottom: 20px
+	background:
+		size: cover
+		position: center
+
+
+
+.message-unit
+	padding: 20px
+	margin-bottom: 15px
+	display: block
+	position: relative
+	.name
+		text-transform: capitalize
+		font:
+			size: 20px
+			weight: 700
+		margin-bottom: 5px
+		color: rgba(black, 0.6)
+
+	&.highlight
+		background: black
+		.name
+			color: white
+		.message
+			color: white
+	&.grey
+		background: $grey
+	.date
+		font:
+			size: 14px
+		position: absolute
+		top: 22px
+		right: 20px
+	.button-wrapper
+		display: flex
+		justify-content: space-between
+
+
+//styling the profile section
+
+#profile
+	.face-unit .face
+		width: 200px
+		height: 200px
+		margin: 0 auto 20px
+		background:
+			size: cover
+			position: center
+			repeat: no-repeat
+	.face-unit img
+		margin-bottom: 15px
+
+//styling create message
+#create_message
+	.face
+		background:
+			size: cover
+			position: center
+		margin-top: 25px
+		cursor: pointer
+		display: block
+		transition: all ease-in-out 300ms
+		&:hover
+			transform: scale(1.1)
+
+
+//styling the view user
+
+#view_user
+	.view-unit .face
+		margin-bottom: 20px
+		background:
+			size: cover
+			position: center
+			repaet: no-repeat
+	.text
+		font-size: 18px
+
+
+
+//media queries
+
+@media (max-width: 740px)
+	.user-unit
+		margin-left: 0px
+		width: 80%
+		margin: 0 auto 20px
+		.face
+			width: 100px
+			height: 100px
