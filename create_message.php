@@ -15,7 +15,9 @@ if(!$user->logged_in()) {
 
 $user = new User;
 
-$sender_id = $user->data()->id;
+$sender_id = session::get('user');
+
+$user_id = session::get('user');
 
 $receiver_id = input::get('receiver_id');
 
@@ -42,83 +44,91 @@ $receiver_name = $receiver->data()->first_name;
 
 		<h1 class="sub-title text-center">Send <?php echo $receiver_name ?> a  Message!</h1>
 
+		
+		<?php 	
 
-		<?php 
 
-					//check if user has submitted data
+		if(input::exist('post', 'send_message')) {
 
-		if(input::exist('post', 'submit')) {
 
-			$validation = new Validation;
+			$validation  = new Validation;
 
 			$fields = array(
 
 
+				'subject' => array(
+
+					'required' => true
+				),
+
 				'content' => array(
 
-					'required' => true,
-					'min' => 4
 
+					'required' => true
 				)
 
 			);
 
-			$check = $validation->check($_POST, $fields);
 
+			$check = $validation->check($_POST, $fields);
 
 			if($check->passed()) {
 
-				$fields = array(
 
-					'sender_id' => input::get('sender_id'),
-					'receiver_id' => input::get("receiver_id"),
-					'content' => input::get('content'),
-					'checked' => 0,
-					'created_on' => date("Y-m-d H:i:s")
+				$conversation = new Conversation;
 
+
+				$users = array(
+
+					'user_1' => $user_id,
+					'user_2' => $receiver_id
 
 				);
 
 
-				
-				$message = $user->send_message($fields);
+				$create = $conversation->create($users, input::get('subject'), input::get('content'));
 
-				if($message) {
+				if($create) {
 
-					redirect::to('index.php'); 
+					redirect::to('index.php');
 				}
+
+
+
+
 			} else {
 
+				?>
 
-				foreach($check->errors() as $error) {
+				<div class="row">
 
-					?>
+					<div class="col-md-8 offset-md-2">
+						
+						<?php 
+						foreach($check->errors() as $error) {
 
-					<div class="row">
+							?>
+							<p class="alert alert-danger"><?php echo $error;  ?></p>
 
-						<div class="col-md-6 offset-md-3 text-center">
-							<p class="alert alert-danger"><?php echo $error; ?></p>
+							<?php 
+						}
 
-						</div>
-
+						?>
 
 					</div>
 
 
-
-					<?php 
-				}
+				</div>
+				<?php
 			}
+
+
 		}
-
-
 
 		?>
 
-
-
+		
 		<div class="row">
-
 
 
 
@@ -138,13 +148,20 @@ $receiver_name = $receiver->data()->first_name;
 				<form action="" method='post'>
 
 					<div class="form-group">
-						<textarea name="content" id="" cols="30" rows="10" class='form-control'></textarea>
+						
+						<label for="subject">Subject</label>
+						<input type="text" class="form-control" name="subject" placeholder="Enter Subject Here" value="<?php echo input::get('subject'); ?>">
+
+					</div>
+
+					<div class="form-group">
+						<textarea name="content" id="" cols="30" rows="10" class='form-control'><?php echo input::get('content'); ?></textarea>
 					</div>
 
 					<input type="hidden" name="receiver_id" value="<?php echo $receiver_id ?>">
 
 					<input type="hidden" name="sender_id" value="<?php echo $sender_id; ?>">
-					<button class="btn btn-primary" type='submit' name='submit'>Send Message</button>
+					<button class="btn btn-primary" type='submit' name='send_message'>Send Message</button>
 
 				</form>		
 

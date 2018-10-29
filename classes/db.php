@@ -15,8 +15,7 @@ class Db {
 
 	private function __construct() {
 
-		$this->pdo = new PDO("mysql:host=localhost;dbname=homeconnect", 'root', '');
-
+		$this->pdo = new PDO("mysql:host=localhost;dbname=homeconnect", 'root', 'root');
 
 		
 	}

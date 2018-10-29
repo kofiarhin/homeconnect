@@ -135,16 +135,18 @@ if(input::exist("post", "save_submit")) {
 	<div class="container">
 
 
-		<h1 class="display-4 text text-center title" style="margin-bottom: 10px">Edit Your Profile</h1>
-
 		<p class="sub-title text-center">Personal Information</p>
 
 		<div class="row">
 
 
-			<div class="col-md-3 offset-md-3">
+			<div class="col-md-3 offset-md-3" style="margin-right: 20px">
+
+
+				<!--====  face-unit =======-->
 
 				<div class="face-unit">
+
 
 					<div class="face" style="background-image: url(uploads/<?php echo $profile_pic; ?>)">
 						
@@ -169,9 +171,11 @@ if(input::exist("post", "save_submit")) {
 
 				</div>
 
+
 			</div>
 
-			<div class="col-md-4 offset-md-1">
+
+			<div class="col-md-4">
 
 
 				<form action="" method="post" style="margin-bottom: 30px">
@@ -180,7 +184,7 @@ if(input::exist("post", "save_submit")) {
 
 					<div class="form-group">
 
-						<label for="first_name">First Name</label>
+						<label for="first_name"><strong>First Name</strong></label>
 						<input type="text" name="first_name" class="form-control" value="<?php echo $user->data()->first_name; ?>">
 
 
@@ -189,7 +193,7 @@ if(input::exist("post", "save_submit")) {
 
 					<div class="form-group">
 
-						<label for="last_name">Last Name</label>
+						<label for="last_name"><strong>Last Name</strong></label>
 
 						<input type="text" class="form-control" class="form-control" value="<?php echo $user->data()->last_name ?>" name="last_name">
 					</div>
@@ -200,32 +204,7 @@ if(input::exist("post", "save_submit")) {
 
 				</form>
 
-				<p class="text text-lead">Preferences</p>
 
-				<?php 
-
-				$preferences = $user->get_preferences();
-
-				if($preferences) {
-
-					?>
-					<p class="text text-capitalize"><?php echo $preferences->interest_1;?></p>
-					<p  class='text text-capitalize'><?php echo $preferences->interest_2; ?></p>
-
-					<p class='text text-capitalize'> <?php echo $preferences->interest_3; ?></p>
-
-					<p class="text text-capitalize"><?php echo $preferences->interest_4; ?></ps>
-
-
-						<p class="text">
-							<a href="change_preference" class='link link-danger'>Change Preference</a>
-						</p>
-
-						<?php 
-					} 
-
-
-					?>
 
 
 
@@ -237,7 +216,58 @@ if(input::exist("post", "save_submit")) {
 
 			<p class="lead text-center sub-title">Other information</p>
 
-			<div class="row">
+
+
+			<div class="row" style="margin-bottom: 20px">
+				
+					<div class="col-md-4 offset-md-3">
+						
+						<p class="text text-lead">Preferences</p>
+
+						<p>
+
+						<?php 
+
+						$preferences = $user->get_preferences();
+
+						//var_dump($preferences);
+
+
+
+						if($preferences) {
+
+
+
+							$string = implode(", ", $preferences);
+
+							echo $string;
+
+
+							?>
+
+
+
+
+										<p class="text">
+												<a href="change_preference" class='link link-danger'>Change Preference</a>
+											</p>
+
+
+							<?php 
+
+
+
+							} 
+
+
+							?>
+							</p>
+					</div>
+
+			</div>
+
+
+			<div class="row" style='margin-bottom: 20px'>
 
 				<div class="col-md-4 offset-md-3">
 
@@ -264,6 +294,10 @@ if(input::exist("post", "save_submit")) {
 				</div>
 
 			</div>
+
+			
+
+
 
 
 		</div>

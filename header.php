@@ -18,6 +18,10 @@ require_once "core/init.php";
 	<!--====  end bootstrap=======-->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
+
+	<!--====  font awesome=======-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<!--====  custom css=======-->
 	<link rel="stylesheet" href="css/styles.css">
 
@@ -44,10 +48,12 @@ require_once "core/init.php";
 				if($user->logged_in()) {
 
 					?>
+
 					
-					<a href="messages.php">Messages <span id="message_result"></span></a>
-					<a href="hosting_requests.php">Requests <span id="request_result"><span class="check">1</span></span></a>
+					
 					<a href="hostings.php">Hostings</a>
+					<a href="hosting_requests.php">Hosting Requests <span id="request_result"><span class="check">1</span></span></a>
+					<a href="inbox.php">Inbox<span id="message_result"></span></a>
 					<a href="user_notifications.php">Notifications <span id="note_result"> <span class="check"></span></span></a>
 					<a href="logout.php">Logout</a>
 					<a href="profile.php" class='face' style="background-image: url(uploads/<?php echo $user->data()->profile_pic; ?>)"></a>
@@ -66,7 +72,11 @@ require_once "core/init.php";
 
 				?>
 
+
+
 			</nav>
+
+			<i class="fa fa-bars menu"></i>
 
 		</div>
 		

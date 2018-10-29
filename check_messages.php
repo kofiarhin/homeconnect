@@ -3,24 +3,31 @@
 
 	require_once "core/init.php";
 
-		$user_id = session::get('user');
+
+		if(session::exist('user')) {
+
+
+			$user_id = session::get('user');
 
 
 
-		$user = new User;
+			$user = new User;
 
-		$check = $user->check_messages();
-
-
-		if($check) {
+			$check = $user->check_messages();
 
 
-			?>
-		
-		<span class="check"><?php echo $check ?></span>
+			if($check) {
 
-			<?php 
+
+				?>
+			
+			<span class="check"><?php echo $check ?></span>
+
+				<?php 
+			}
 		}
+
+		
 
 
  ?>

@@ -14,12 +14,17 @@ if(!$user->logged_in()) {
 
 <div class="container">
 
+
+
 	<?php 
 
 	$user = new User;
 	$user_id = session::get('user');
 
 	$request = new Request;
+
+
+	//var_dump($request);
 
 
 
@@ -39,8 +44,19 @@ if(!$user->logged_in()) {
 		$desired_location = $user->data()->desired_location;
 
 
+		$name = $user->data()->first_name;
+
+
+
 		?>
 
+		
+		<!--====  serach for user=======-->
+		<form action="" method='post' class='search-form'>
+
+			<label for="search">Search</label>
+			<input type="text" name='search' id="search">
+		</form>
 
 
 		<?php 
@@ -62,90 +78,150 @@ if(!$user->logged_in()) {
 
 		if(count($datas) > 1) {
 
+ 
 
 			?>
 
-			<h1 class='sub-title text-center'>Users Matching Your Preference And Desired Location! <a href="profile.php">Edit Profile</a></h1>
 
 
-			<div class="row">
+			<div id="result">
+				
 
-				<div class="offset-md-1"></div>
 
-				<?php 
 
-				foreach($datas as $data) {
+				<div class="row">
+
+
+					<?php 
+
+					foreach($datas as $data) {
 
 						//var_dump($data);
 
 
-					$person_id = $data['id'];
+						$person_id = $data['id'];
 
 						//echo $person_id;
 
-					if($login_id != $data['id'] && $data['location'] == $desired_location) {
+						if($login_id != $data['id'] && $data['location'] == $desired_location) {
 
 						//var_dump($data);
 
-						?>
+							?>
 
-						<div class="col-md-3 user-unit">
-
-
-							<div class="user-face" style='background-image: url(uploads/<?php echo $data['profile_pic']; ?>);'> 
+							<div class="col-md-3 user-unit">
 
 
+								<div class="user-face" style='background-image: url(uploads/<?php echo $data['profile_pic']; ?>);'> 
 
-							</div>
 
-							<p class="text text-capitalize name">Name: <?php echo $data['first_name']." ".$data['last_name']; ; ?></p>
 
-							<?php
+								</div>
+
+								<p class="text-capitalize name">Name: <?php echo $data['first_name']." ".$data['last_name']; ; ?></p>
+
+								<a href="view_user.php?user_id=<?php echo $person_id; ?>" class='btn btn-default'>View Profile</a>
+
+
+								<div class="button-wrapper">
+									
+
+
+								
+								<?php
 
 									//echo $user_id, "<br>";
 
 									//echo $person_id;
 
 
-							$check = $request->check_exist($user_id, $person_id);
+								$check = $request->check_exist($user_id, $person_id);
 
-							if(!$check) {
+								$hostings = new Hostings;
+
+
+								$user_id = session::get(config::get('session/session_name'));
+
+								$check_hosting = $hostings->check_hosting($user_id,  $person_id);
+
+
+							//var_dump($check_hosting);
+
+
+								if(!$check && !$check_hosting) {
+
+
+								// check if user is already hosting
+
+
+
+									?>
+
+									<a href="create_connection.php?user_id=<?php echo $user_id; ?>&person_id=<?php echo $person_id; ?>" class='btn btn-primary'>Send Request</a>
+
+
+									<?php 
+								} 
+
+
+
+								else {
+
+
+									if(!$check && $hostings) {
+
+
+										?>
+
+										<a href="create_message.php?receiver_id=<?php echo $person_id; ?>" class="btn btn-primary">Send Message</a>
+
+
+										<?php 
+
+									} else {
+
+
+
+
+										$request_status = $check->request_status;
+
+
+
+
+
+										if($request_status == 2) {
+
+											?>
+
+											<a href="create_message?receiver_id=<?php echo $person_id; ?>" class="btn btn-warning">Send Message</a>
+
+											<?php 
+										}
+
+
+										else if ($request_status == 1) {
+
+
+											?>
+											<button class="btn btn-info">Pending Request</button>
+											<?php 
+										}
+
+									}
+
+
+
+
+
+								}
+
 
 								?>
-								<a href="create_connection.php?user_id=<?php echo $user_id; ?>&person_id=<?php echo $person_id; ?>" class='btn btn-primary'>Connect</a>
 
 
-								<?php 
-							} else {
-
-								//var_dump($check);
-
-								$request_status = $check->request_status; 
-
-								if($request_status == 2) {
-
-									?>
-
-									<a href="create_message?receiver_id=<?php echo $person_id; ?>" class="btn btn-warning">Send Message</a>
-
-									<?php 
-								}
+								</div>
 
 
-								else if ($request_status == 1) {
-
-									
-									?>
-						<button class="btn btn-info">Pending</button>
-									<?php 
-								}
-
-
-							}
-
-
-							?>
-							
 
 							<!--====  end
 
@@ -225,6 +301,8 @@ if(!$user->logged_in()) {
 	}
 
 	?>
+
+</div>
 
 </div>
 

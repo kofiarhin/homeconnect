@@ -101,7 +101,54 @@
 
 		public function accept($id) {
 
-							
+			
+
+				$request = $this->db->get('requests', array('id', '=', $id));
+
+				
+
+				if($request->count()) {
+
+
+						$user_id = session::get('user');
+
+						$person_id  = $request->first()->user_id;
+						$start = $request->first()->start_date;
+						$end = $request->first()->end_date;
+						$created_on = date("Y-m-d H:i:s");
+
+
+						//var_dump($request->first());
+
+
+						$hosting_fields = array(
+
+							'user_id' => (int)$user_id,
+							'person_id' => (int)$person_id,
+							'start_date'  => $start,
+							'end_date' => $end,
+							'created_on' => $created_on
+
+
+						);
+
+						//var_dump($hosting_fields);
+
+						//insert into hostings table
+
+						$hosting_insert = $this->db->insert('hostings', $hosting_fields);
+
+						if($hosting_insert) {
+
+
+							echo "inserted";
+						}
+
+					
+
+				}
+
+
 
 				$fields = array(
 
@@ -117,6 +164,12 @@
 				if($update) {
 
 					session::flash("success", "you have successfully accepted hosting");
+
+
+					//insert into hostings
+
+
+
 					
 					return true;
 				}
@@ -162,7 +215,7 @@
 			if($delete) {
 
 
-				echo "request deleted";
+				//echo "request deleted";
 
 				session::flash('success', 'Request successfully deleted');
 				return true;

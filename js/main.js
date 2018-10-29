@@ -1,11 +1,27 @@
 $(function(){
 
 
+	//navigation stuff
+
+
+	$('.menu').on('click', function(){
+
+
+		$('.menu').toggleClass('active');
+
+	});
+
+
+
+
+
 
 		var check = setInterval(check_message, 100);
 
 
 		var $counter = 1;
+
+
 
 
 
@@ -42,6 +58,38 @@ $(function(){
 
 
 		}
+
+
+		$("#search").on("keyup", function(){
+
+
+			var search = $('#search').val();
+
+			console.log(search);
+
+
+			if(search == "") {
+
+					$("#result").html("<p>No match Found</p>");
+
+			} else if( search != "") {
+
+				$.post("search_user.php", {
+
+					'search': search
+
+				}, function(data){
+
+
+						$("#result").html(data);
+
+				});
+
+
+			}
+
+		
+		})
 
 
 

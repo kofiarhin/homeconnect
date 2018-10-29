@@ -14,83 +14,95 @@ require_once "header.php";
 		<div class="col-md-6 offset-md-3">
 
 			<?php 
-					if(input::exist('post', 'submit')) {
+			if(input::exist('post', 'submit')) {
 
-						$interest = input::get("interests");
+				$interest = input::get("interests");
 
-						if(empty($interest)) {
+				if(empty($interest)) {
 
-							?>
+					?>
 
 					<p class="alert alert-danger">You need to select a Preference</p>
 
-							<?php 
-						} else {
+					<?php 
+				} else {
 
 
 
-								$preference = new Preference();
+					$preference = new Preference();
 
-								$update = $preference->update($interest);
-
-
-								if($update) {
-
-									redirect::to("index.php");
-								}
+					$update = $preference->update($interest);
 
 
+					if($update) {
 
-						}
+						redirect::to("index.php");
 					}
 
 
-			 ?>
+
+				}
+			}
+
+
+			?>
 
 			<form action="" method='post'>
 
 				<div class="form-group">
 
-					<label for="sports">
-						<input type="checkbox" id='sports' name='interests[]'  value="sports">Sports
-					</label>
+
+					<div class="form-check">
+						
+						<input type="checkbox" id='sports' name='interests[]'  value="sports" class="form-check-input">
+						<label for="sports" class="form-check-label">Sports</label>
+						
+					</div>
+
 
 				</div>
 
 
 				<div class="form-group">
 
-					<label for="technology">
-						<input type="checkbox" id='technology' name='interests[]' value='technology'>Technology
-					</label>
+					<div class="form-check">
+						
+						<input type="checkbox" id='technology' name='interests[]' value='technology' class="form-check-input">
+
+						<label for="technology" class="form-check-label">Technology</label>
+						
+					</div>
+
 
 				</div>
 
 
 				<div class="form-group">
 
-					<label for="culture">
-						<input type="checkbox" id='culture' name='interests[]' value='arts and culture'>Arts and Culture
-					</label>
+					<div class="form-check">
+						
+						<input type="checkbox" id='culture' name='interests[]' value='arts and culture' class="form-check-input">
+						<label for="culture" class="form-check-label">Arts and Culture</label>
+						
+					</div>
+
 
 				</div>
 
 
 				<div class="form-group">
 
-					<label for="science">
-						<input type="checkbox" id='science' name='interests[]' value='science'>Science
-					</label>
+					<div class="form-check">
+						
+						<input type="checkbox" id='science' name='interests[]' value='science' class="form-check-input">
+						<label for="science" class="form-check-label"> Science</label>
+						
+					</div>
+
 
 				</div>
 
-				<div class="form-group">
 
-					<label for="location">
-						<input type="checkbox" id='science' name='interests[]' value='science'>Location
-					</label>
-
-				</div>
 
 				<input type="hidden" name='user_id' value="<?php echo $user->data()->id?>">
 

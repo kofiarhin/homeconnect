@@ -20,7 +20,14 @@ body
 
 //general styling
 
-
+.face
+	width: 200px
+	height: 200px
+	margin: 0 auto
+	background:
+		size: cover
+		position: center
+		repeat: no-repeat
 	
 .face-unit
 	cursor: pointer
@@ -28,7 +35,7 @@ body
 		width: 100%
 
 .title
-	font-size: 35px
+	font-size: 30px
 	text-transform: uppercase
 	margin-bottom: 30px
 	a
@@ -38,7 +45,7 @@ body
 
 .sub-title
 	font: 
-		size: 20px
+		size: 18px
 		weight: 400
 	margin-bottom: 20px
 	text-transform: uppercase
@@ -57,6 +64,7 @@ body
 	padding: 20px 
 	cursor: pointer
 	transition: all ease-in-out 300ms
+	margin-bottom: 20px
 	margin-left: 20px
 	img
 		width: 100%
@@ -64,21 +72,67 @@ body
 		margin-bottom: 15px
 
 	.face
-		width: 150px
-		height: 150px
+		width: 100px
+		height: 100px
+		margin: 0 auto 20px
 		background:
 			size: cover
 			position: center
 			repeat: no-repeat
-		margin: 0 auto 20px
 		border-radius: 50%
 
 	.name
-		font-size: 20px
+		font-size: 18px
 		text-align: center
+	.button-wrapper
+		display: flex
+		flex-direction: column
+		button
+			margin-bottom: 10px
+
+.con-unit
+	background: pink
+	margin-bottom: 20px
+	padding: 20px
+	display: flex
+	align-items: center
+
+	.face
+		width: 50px
+		height: 50px
+		margin-right: 20px
+		background:
+			size: cover
+			position: center
+		border-radius: 50%
+	.content
+		.message
+			font-size: 18px
+			margin-bottom: 5px
+		.date
+			font-size: 12px
+	.message-title
+		font:
+			size: 20px
+			weight: 700
+
+//general classes
+.note
+	background: pink
+	padding: 10px
+	display: inline-block
+	background: $blue
+	color: white
+	&.checked
+		background: white
+		color: black
 
 .button-wrapper
 	text-align: center
+	a
+		display: block
+		width: 70%
+		margin: 0 auto 10px
 
 .message-content
 	background: $grey
@@ -120,12 +174,26 @@ body
 		text-decoration: none
 .view-unit
 	.face
-		width: 100%
-		min-height: 300px
+		width: 150px
+		height: 150px
 		background:
 			size: cover
 			position: center
 		margin: 0 auto
+		cursor: pointer
+.search-form
+	input
+		outline: none
+		border: none
+		border-bottom: 1px solid $blue
+		font:
+			size: 14px
+		margin-left: 10px
+		margin-bottom: 20px
+	label
+		font:
+			size: 12px
+			weight: 700
 
 
 
@@ -135,6 +203,7 @@ header .container
 	justify-content: space-between
 	margin-bottom: 20px
 	padding: 15px 0px 0px
+	position: relative
 	.logo
 		font:
 			size: 25px
@@ -175,7 +244,13 @@ header .container
 		background:
 			size: cover
 			position: center
+//menu icon
 
+.menu
+	font-size: 30px
+	cursor: pointer
+	color: $blue
+	display: none
 
 //message unit
 
@@ -263,6 +338,26 @@ header .container
 		font-size: 18px
 
 
+//media query for 960 screen
+
+@media(max-width: 960px)
+	header .container nav
+		position: absolute
+		left: 0px
+		top: -400px
+		background: pink
+		display: block
+		width: 100%
+		z-index: 2000
+		form
+			label
+				display: none
+			margin-bottom: 10px
+		a
+			display: block
+			margin-bottom: 15px
+	header .menu
+			display: block
 
 //media queries
 

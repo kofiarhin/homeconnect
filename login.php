@@ -12,7 +12,7 @@
 		
 		<div class="row">
 			
-			<div class="col-md-5 offset-md-4">
+			<div class="col-md-4 offset-md-4">
 
 				<h1 class="display-4">Login</h1>
 				<?php 

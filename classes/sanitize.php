@@ -17,4 +17,17 @@
 			}
 
 
+			public static function flatten(array $array) {
+
+
+				$flattened = new RecursiveArrayIterator($array);
+
+				$flattened = new RecursiveIteratorIterator($flattened);
+
+				$flattened = iterator_to_array($flattened, false);
+
+				return($flattened);
+			}
+
+
 	}

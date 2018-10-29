@@ -4,18 +4,30 @@
 	require_once "core/init.php";
 
 
-	$request = new Request();
-
-	$check = $request->check_request();
 
 
-	if($check) {
+	if(session::exist(config::get('session/session_name'))) {
 
-		?>
 
-		<span class="check"><?php echo $check; ?></span>
 
-		<?php 
+				
+				$request = new Request();
+
+				$check = $request->check_request();
+
+
+				if($check) {
+
+					?>
+
+					<span class="check"><?php echo $check; ?></span>
+
+					<?php 
+				}
+
+
 	}
+
+
 
  ?>

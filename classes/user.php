@@ -180,7 +180,34 @@ class User extends Preference {
 
 				if($preference->count()) {
 
-					return $preference->first();
+
+					$data  = (array) $preference->first();
+
+
+					$data = array_filter($data);
+
+
+					//remover user_id
+
+					if(isset($data['user_id'])) {
+
+						unset($data['user_id']);
+					}
+
+
+					//remove id in genereal
+
+
+					if(isset($data['id'])) {
+
+
+							unset($data['id']);
+
+					}
+
+
+
+					return $data;
 
 				}
 			}
@@ -221,7 +248,29 @@ class User extends Preference {
 	}
 
 
-	
+	public function search($user) {
+
+
+			$sql = "select * from users where username like ? or first_name like ? or last_name like ? ";
+			$fields = array(
+
+				'username' => "%{$user}%",
+				"first_name" => "%{$user}%",
+				"last_name" => "%{$user}%"
+
+			);
+
+			$query = $this->db->query($sql, $fields);
+
+			if($query->count()) {
+
+				return ($query->result());
+			}
+
+
+				return false;
+
+	}
 
 
 	//get users with similar interest

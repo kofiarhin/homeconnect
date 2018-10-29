@@ -14,7 +14,26 @@ $request = new Request;
 	<div class="container">
 
 
+		<?php 
+
+				if(!$request->data()) {
+
+						?>
+				<p class="alert alert-info text-center sub-title">No Hosting Request Yet!</p>
+
+						<?php 
+ 
+				}  else {
+
+					?>
 		<h1 class="title">Your are hosting!...</h1>
+
+					<?php  
+				}
+
+		 ?>
+
+
 
 
 		<?php 
@@ -62,7 +81,7 @@ $request = new Request;
 
 					if($data->request_status == 2) {
 
-						var_dump($data);
+						//var_dump($data);
 
 
 						$person_id = $data->user_id;
@@ -76,7 +95,7 @@ $request = new Request;
 								<div class="content">
 										
 
-										<p class="name"><?php echo $data->first_name." ".$data->last_name; ?></p>
+										<p class="name text-capitalize"><?php echo $data->first_name." ".$data->last_name; ?></p>
 						
 										<div class="button-wrapper">
 										

@@ -5,21 +5,32 @@
 		require_once "core/init.php";
 
 
-		$note  = new Notifications;
 
-		$check = $note->check_note(session::get('user'));
-
-
-		if($check) {
+		if(session::exist(config::get('session/session_name'))) {
 
 
 
-			?>
-	
-		<span class="check"><?php echo $check; ?></span>
+				$note  = new Notifications;
 
-			<?php 
+				$check = $note->check_note(session::get('user'));
+
+
+				if($check) {
+
+
+
+					?>
+				
+				<span class="check"><?php echo $check; ?></span>
+
+					<?php 
+				}
+
+
 		}
+
+
+		
 
 
  ?>
